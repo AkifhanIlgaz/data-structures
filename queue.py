@@ -6,11 +6,16 @@ class Queue:
         self.items.insert(0, item)
 
     def pop(self):
-        if len(self.items):
-            return self.items.pop()
+        if len(self.items) == 0:
+            return None
+        temp = self.items[-1]
+        del self.items[-1]
+        return temp
 
     def peek(self):
-        return self.items[len(self.items) - 1]
+        if len(self.items) == 0:
+            return None
+        return self.items[-1]
 
     def size(self):
         return len(self.items)
