@@ -89,7 +89,3 @@ class BSTNode(object):
             return True
         return False
 
-    def __repr__(self):
-        lines = []
-        print_tree(self, lines)
-        return "\n".join(lines)
