@@ -14,6 +14,31 @@ class Graph:
         else:
             self.graph[v] = set([u])
 
+    def breadth_first_search(self, v):
+        visited = []
+        to_visit = []
+        to_visit.append(v)
+        while to_visit:
+            newly_visited = to_visit.pop(0)
+            visited.append(newly_visited)
+            sorted_neighbors = sorted(self.graph[newly_visited])
+            for neighbor in sorted_neighbors:
+                if neighbor not in visited and neighbor not in to_visit:
+                    to_visit.append(neighbor)
+        return visited
+
+    def depth_first_search(self, start_vertex):
+        visited = []
+        self.depth_first_search_r(visited, start_vertex)
+        return visited
+
+    def depth_first_search_r(self, visited, current_vertex):
+        visited.append(current_vertex)
+        sorted_neighbors = sorted(self.graph[current_vertex])
+        for neighbor in sorted_neighbors:
+            if neighbor not in visited:
+                self.depth_first_search_r(visited, neighbor)
+
     def edge_exists(self, u, v):
         if u < 0 or u >= len(self.graph):
             return False
